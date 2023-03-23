@@ -1,0 +1,37 @@
+{
+  "$id": "users-inerror-get",
+  "title": "Get Users in error",
+  "type": "object",
+  "properties": {
+    "Roles": {
+      "type": "string",
+      "sanitize": "mongo",
+      "pattern": "^[SABD](\\|[SABD])*$"
+    },
+    "ErrorType": {
+      "type": "string",
+      "sanitize": "mongo",
+      "pattern": "^((inactive_user|unassigned_user|inactive_user_account|failed_billing_synchro|no_billing_data)(\\||inactive_user|unassigned_user|inactive_user_account|failed_billing_synchro|no_billing_data)*)$"
+    },
+    "Search": {
+      "$ref": "common#/definitions/search"
+    },
+    "SortFields": {
+      "$ref": "common#/definitions/sortFields"
+    },
+    "Skip": {
+      "$ref": "common#/definitions/skip"
+    },
+    "OnlyRecordCount": {
+      "$ref": "common#/definitions/onlyRecordCount"
+    },
+    "ProjectFields": {
+      "$ref": "common#/definitions/projectFields"
+    },
+    "WithAuth": {
+      "$ref": "common#/definitions/withAuth",
+      "default": true
+    }
+  },
+  "required": []
+}

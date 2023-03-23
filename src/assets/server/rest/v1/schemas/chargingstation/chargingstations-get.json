@@ -1,0 +1,91 @@
+{
+  "$id": "chargingstations-get",
+  "title": "Get Charging Stations Request",
+  "type": "object",
+  "properties": {
+    "Issuer": {
+      "type": "boolean",
+      "sanitize": "mongo"
+    },
+    "Search": {
+      "$ref": "common#/definitions/search"
+    },
+    "WithNoSiteArea": {
+      "type": "boolean",
+      "sanitize": "mongo"
+    },
+    "SiteID": {
+      "$ref": "common#/definitions/ids"
+    },
+    "CompanyID": {
+      "$ref": "common#/definitions/ids"
+    },
+    "WithSite": {
+      "type": "boolean",
+      "sanitize": "mongo"
+    },
+    "WithSiteArea": {
+      "type": "boolean",
+      "sanitize": "mongo"
+    },
+    "WithUser": {
+      "type": "boolean",
+      "sanitize": "mongo"
+    },
+    "SiteAreaID": {
+      "$ref": "common#/definitions/ids"
+    },
+    "ConnectorStatus": {
+      "type": "string",
+      "pattern": "^((Available|Preparing|Charging|Occupied|SuspendedEVSE|SuspendedEV|Finishing|Reserved|Unavailable|Faulted)(\\||Available|Preparing|Charging|Occupied|SuspendedEVSE|SuspendedEV|Finishing|Reserved|Unavailable|Faulted)*)?$",
+      "sanitize": "mongo"
+    },
+    "ConnectorType": {
+      "type": "string",
+      "pattern": "^((T2|CCS|C|T1|T3C|T1CCS|D|U)(\\||T2|CCS|C|T1|T3C|T1CCS|D|U)*)?$",
+      "sanitize": "mongo"
+    },
+    "ChargingStationID": {
+      "$ref": "common#/definitions/string-ids"
+    },
+    "IncludeDeleted": {
+      "type": "boolean",
+      "sanitize": "mongo"
+    },
+    "LocLongitude": {
+      "$ref": "common#/definitions/LocLongitude"
+    },
+    "LocLatitude": {
+      "$ref": "common#/definitions/LocLatitude"
+    },
+    "LocMaxDistanceMeters": {
+      "$ref": "common#/definitions/LocMaxDistanceMeters"
+    },
+    "Limit": {
+      "$ref": "common#/definitions/limit"
+    },
+    "SortFields": {
+      "$ref": "common#/definitions/sortFields"
+    },
+    "Skip": {
+      "$ref": "common#/definitions/skip"
+    },
+    "OnlyRecordCount": {
+      "$ref": "common#/definitions/onlyRecordCount"
+    },
+    "ProjectFields": {
+      "$ref": "common#/definitions/projectFields"
+    },
+    "WithAuth": {
+      "$ref": "common#/definitions/withAuth",
+      "default": true
+    },
+    "Public": {
+      "type": "boolean",
+      "sanitize": "mongo"
+    }
+  },
+  "required": [
+    "Limit"
+  ]
+}

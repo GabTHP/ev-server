@@ -1,0 +1,273 @@
+{
+  "Crypto": {
+    "key": "ShVmYq3t6w9z$C&F)H@McQfTjWnZr4u7",
+    "algorithm": "aes-256-ctr"
+  },
+  "EVDatabase": {
+    "url": "https://ev-database.org/export_v26/74964691",
+    "key": ""
+  },
+  "CentralSystems": [
+    {
+      "type": "ocpp",
+      "implementation": "soap",
+      "protocol": "http",
+      "host": "server",
+      "port": 8000,
+      "debug": false
+    },
+    {
+      "type": "ocpp",
+      "implementation": "json",
+      "protocol": "ws",
+      "host": "server",
+      "port": 8010,
+      "debug": false
+    }
+  ],
+  "CentralSystemRestService": {
+    "protocol": "http",
+    "host": "server",
+    "port": 81,
+    "userTokenKey": "s3A9js135sdf384hgj384ku38lilckjflskdjf2797boeiBhxQDM1GInRith",
+    "userTokenLifetimeHours": 12,
+    "userDemoTokenLifetimeDays": 365,
+    "userTechnicalTokenLifetimeDays": 365,
+    "passwordWrongNumberOfTrial": 3,
+    "passwordBlockedWaitTimeMin": 5,
+    "captchaSecretKey": "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe",
+    "captchaScore": 0.25,
+    "debug": false
+  },
+  "CentralSystemFrontEnd": {
+    "protocol": "http",
+    "host": "localhost",
+    "port": 3080
+  },
+  "CentralSystemServer": {
+    "protocol": "http",
+    "host": "server",
+    "port": 81
+  },
+  "OCPIService": {
+    "protocol": "http",
+    "host": "server",
+    "port": 9090,
+    "debug": false
+  },
+  "ODataService": {
+    "protocol": "http",
+    "host": "server",
+    "port": 9292,
+    "debug": false
+  },
+  "WSDLEndpoint": {
+    "baseUrl": "http://server:8000"
+  },
+  "JsonEndpoint": {
+    "baseUrl": "ws://server:8010"
+  },
+  "OCPIEndpoint": {
+    "baseUrl": "http://server:9090"
+  },
+  "AsyncTask": {
+    "active": true,
+    "nbrTasksInParallel": 4
+  },
+  "Storage": {
+    "implementation": "mongodb",
+    "uri": null,
+    "host": "mongodb",
+    "port": 27017,
+    "user": "evse-user",
+    "password": "pass1234",
+    "database": "evse",
+    "poolSize": 200,
+    "replicaSet": "rs0",
+    "debug": false
+  },
+  "Axios": {
+    "retries": 0,
+    "timeoutSecs": 30
+  },
+  "Email": {
+    "disableBackup": false,
+    "smtp": {
+      "from": "e-mobility@sap.com",
+      "host": "mailserver",
+      "port": 587,
+      "secure": false,
+      "requireTLS": true,
+      "user": "evse-mail-user",
+      "password": "evse-mail-pwd"
+    },
+    "smtpBackup": {
+      "from": "e-mobility@sap.com",
+      "host": "mailserver",
+      "port": 587,
+      "secure": false,
+      "requireTLS": true,
+      "user": "evse-mail-user",
+      "password": "evse-mail-pwd"
+    }
+  },
+  "Notification": {
+    "Email": {
+      "enabled": true
+    },
+    "RemotePushNotification": {
+      "enabled": false
+    }
+  },
+  "Authorization": {
+    "debug": false
+  },
+  "ChargingStation": {
+    "heartbeatIntervalOCPPSSecs": 180,
+    "heartbeatIntervalOCPPJSecs": 3600,
+    "pingIntervalOCPPJSecs": 60,
+    "monitoringIntervalOCPPJSecs": 600,
+    "checkEndOfChargeNotificationAfterMin": 5,
+    "notifBeforeEndOfChargePercent": 85,
+    "notifBeforeEndOfChargeEnabled": true,
+    "notifEndOfChargePercent": 0,
+    "notifEndOfChargeEnabled": true,
+    "notifStopTransactionAndUnlockConnector": false,
+    "maxLastSeenIntervalSecs": 540
+  },
+  "Migration": {
+    "active": true
+  },
+  "Scheduler": {
+    "active": true,
+    "tasks": [
+      {
+        "name": "CheckSessionNotStartedAfterAuthorizeTask",
+        "active": true,
+        "periodicity": "*/5 * * * *",
+        "config": {
+          "checkPastAuthorizeMins": 60,
+          "sessionShouldBeStartedAfterMins": 10
+        }
+      },
+      {
+        "name": "BillingPeriodicOperationTask",
+        "active": false,
+        "periodicity": "0 3 * * *",
+        "config": {
+          "onlyProcessUnpaidInvoices": false
+        }
+      },
+      {
+        "name": "BillingPeriodicOperationTask",
+        "active": false,
+        "periodicity": "0 4 */7 * *",
+        "config": {
+          "onlyProcessUnpaidInvoices": true
+        }
+      },
+      {
+        "name": "BillPendingTransactionTask",
+        "active": false,
+        "periodicity": "*/15 * * * *",
+        "config": {}
+      },
+      {
+        "name": "LoggingDatabaseTableCleanupTask",
+        "active": true,
+        "periodicity": "0 0 * * 1",
+        "config": {
+          "retentionPeriodWeeks": 1,
+          "securityRetentionPeriodWeeks": 1
+        }
+      },
+      {
+        "name": "SynchronizeRefundTransactionsTask",
+        "active": false,
+        "periodicity": "0 * * * *",
+        "config": {}
+      },
+      {
+        "name": "CheckPreparingSessionNotStartedTask",
+        "active": true,
+        "periodicity": "0-59/5 * * * *",
+        "config": {
+          "preparingStatusMaxMins": 15
+        }
+      },
+      {
+        "name": "CheckOfflineChargingStationsTask",
+        "active": false,
+        "periodicity": "0-59/5 * * * *",
+        "config": {
+          "offlineChargingStationMins": 5
+        }
+      },
+      {
+        "name": "AssetGetConsumptionTask",
+        "active": true,
+        "periodicity": "* * * * *"
+      },
+      {
+        "name": "CheckUserAccountInactivityTask",
+        "active": false,
+        "periodicity": "0 0 * * 1",
+        "config": {
+          "userAccountInactivityMonths": 6
+        }
+      },
+      {
+        "name": "OCPIPushEVSEStatusesTask",
+        "active": false,
+        "periodicity": "0 1 * * *",
+        "config": {}
+      },
+      {
+        "name": "OCPIPullLocationsTask",
+        "active": false,
+        "periodicity": "*/10 * * * *",
+        "config": {}
+      },
+      {
+        "name": "OCPIPullTokensTask",
+        "active": false,
+        "periodicity": "0 2 * * *",
+        "config": {}
+      },
+      {
+        "name": "OCPIPushTokensTask",
+        "active": true,
+        "periodicity": "0 0 1 * *",
+        "config": {}
+      },
+      {
+        "name": "OCPIPullSessionsTask",
+        "active": false,
+        "periodicity": "0 3 * * *",
+        "config": {}
+      },
+      {
+        "name": "OCPIPullCdrsTask",
+        "active": false,
+        "periodicity": "0 4 * * *",
+        "config": {}
+      },
+      {
+        "name": "SynchronizeCarsTask",
+        "active": false,
+        "periodicity": "0 0 1 * *",
+        "config": {}
+      }
+    ]
+  },
+  "Trace": {
+    "traceIngressHttp": false,
+    "traceEgressHttp": false,
+    "traceOcpp": false,
+    "traceDatabase": false,
+    "traceNotification": false
+  },
+  "Logging": {
+    "logLevel": "D"
+  }
+}

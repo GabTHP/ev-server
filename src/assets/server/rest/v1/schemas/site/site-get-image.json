@@ -1,0 +1,13 @@
+{
+  "$id": "site-get-image",
+  "title": "Get site image Request",
+  "type": "object",
+  "properties": {
+    "ID": {
+      "$ref": "common#/definitions/id"
+    }
+  },
+  "required": [
+    "ID"
+  ]
+}

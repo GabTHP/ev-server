@@ -1,0 +1,60 @@
+{
+  "$id": "chargingstation-action-transaction-start",
+  "title": "Remote Start Transaction",
+  "type": "object",
+  "properties": {
+    "chargingStationID": {
+      "$ref": "chargingstation#/definitions/id"
+    },
+    "carID": {
+      "$ref": "common#/definitions/id"
+    },
+    "carStateOfCharge": {
+      "type": "integer",
+      "sanitize": "mongo",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "carOdometer": {
+      "type": "integer",
+      "sanitize": "mongo",
+      "minimum": 1
+    },
+    "userID": {
+      "$ref": "common#/definitions/id"
+    },
+    "departureTime": {
+      "type": "string",
+      "format": "date-time",
+      "customType": "date",
+      "sanitize": "mongo"
+    },
+    "targetStateOfCharge": {
+      "type": "integer",
+      "sanitize": "mongo",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "args": {
+      "type": "object",
+      "properties": {
+        "connectorId": {
+          "$ref": "chargingstation#/definitions/connector/properties/connectorId"
+        },
+        "tagID": {
+          "$ref": "tag#/definitions/id"
+        },
+        "visualTagID": {
+          "$ref": "tag#/definitions/visualID"
+        }
+      },
+      "anyOf": [
+        { "required": ["tagID"] },
+        { "required": ["visualTagID"] }
+      ]
+    }
+  },
+  "required": [
+    "chargingStationID"
+  ]
+}

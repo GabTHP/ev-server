@@ -1,0 +1,17 @@
+{
+  "$id": "billing-payment-methods-get",
+  "title": "Get user payments methods",
+  "type": "object",
+  "properties": {
+    "userID": {
+      "$ref": "common#/definitions/id"
+    },
+    "WithAuth": {
+      "$ref": "common#/definitions/withAuth",
+      "default": true
+    }
+  },
+  "required": [
+    "userID"
+  ]
+}

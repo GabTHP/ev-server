@@ -1,0 +1,17 @@
+{
+  "$id": "auth-verification-email-resend",
+  "title": "Resend verification Email",
+  "type": "object",
+  "properties": {
+    "email": {
+      "$ref": "user#/definitions/email"
+    },
+    "captcha": {
+      "$ref": "common#/definitions/captcha"
+    }
+  },
+  "required": [
+    "email",
+    "captcha"
+  ]
+}

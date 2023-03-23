@@ -1,0 +1,174 @@
+{
+  "$id": "car-catalog-save",
+  "title": "Validate the Car Catalog",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "number"
+    },
+    "vehicleMake": {
+      "type": "string"
+    },
+    "vehicleModel": {
+      "type": "string"
+    },
+    "vehicleModelVersion": {
+      "type": "string"
+    },
+    "rangeWLTPTEH": {
+      "type": "number"
+    },
+    "priceFromDE": {
+      "type": "number"
+    },
+    "chargePlug2Location": {
+      "type": "string"
+    },
+    "chargePlug2OptionalDE": {
+      "type": "boolean"
+    },
+    "chargePlug2OptionalNL": {
+      "type": "boolean"
+    },
+    "chargePlug2OptionalUK": {
+      "type": "boolean"
+    },
+    "chargeStandardChargeSpeedDE": {
+      "type": "number"
+    },
+    "chargeStandardChargeTimeDE": {
+      "type": "number"
+    },
+    "chargeStandardChargeTimeNL": {
+      "type": "number"
+    },
+    "chargeStandardChargeSpeedNL": {
+      "type": "number"
+    },
+    "chargeStandarChargeTimeUK": {
+      "type": "number"
+    },
+    "chargeStandardChargeSpeedUK": {
+      "type": "number"
+    },
+    "drivetrainPropulsion": {
+      "type": "string"
+    },
+    "drivetrainPowerHP": {
+      "type": "number"
+    },
+    "drivetrainTorque": {
+      "type": "number"
+    },
+    "performanceAcceleration": {
+      "type": "number"
+    },
+    "performanceTopspeed": {
+      "type": "number"
+    },
+    "rangeWLTP": {
+      "type": "number"
+    },
+    "rangeWLTPEstimate": {
+      "type": "boolean"
+    },
+    "rangeNEDC": {
+      "type": "number"
+    },
+    "rangeNEDCEstimate": {
+      "type": "boolean"
+    },
+    "rangeReal": {
+      "type": "number"
+    },
+    "efficiencyReal": {
+      "type": "number"
+    },
+    "chargePlug": {
+      "type": "string"
+    },
+    "chargePlugLocation": {
+      "type": "string"
+    },
+    "chargeStandardPower": {
+      "type": "number"
+    },
+    "chargeStandardPhase": {
+      "type": "number"
+    },
+    "chargeStandardPhaseAmp": {
+      "type": "number"
+    },
+    "chargeStandardChargeTime": {
+      "type": "number"
+    },
+    "chargeStandardChargeSpeed": {
+      "type": "number"
+    },
+    "fastChargePlug": {
+      "type": "string"
+    },
+    "fastChargePowerMax": {
+      "type": "number"
+    },
+    "batteryCapacityUseable": {
+      "type": "number"
+    },
+    "batteryCapacityFull": {
+      "type": "number"
+    },
+    "miscBody": {
+      "type": "string"
+    },
+    "miscSegment": {
+      "type": "string"
+    },
+    "miscSeats": {
+      "type": "number"
+    },
+    "miscIsofix": {
+      "type": "boolean"
+    },
+    "miscIsofixSeats": {
+      "type": "number"
+    },
+    "miscTurningCircle": {
+      "type": "number"
+    },
+    "videos": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      }
+    },
+    "hash": {
+      "type": "string"
+    },
+    "image": {
+      "type": "string"
+    },
+    "imageURLs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lastChangedOn": {
+      "type": [
+        "string",
+        "object"
+      ],
+      "format": "date"
+    }
+  },
+  "required": [
+    "id",
+    "vehicleMake",
+    "vehicleModel",
+    "vehicleModelVersion"
+  ],
+  "definitions": {}
+}

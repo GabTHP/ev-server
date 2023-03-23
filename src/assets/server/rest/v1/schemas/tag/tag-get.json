@@ -1,0 +1,20 @@
+{
+  "$id": "tag-get",
+  "title": "Get a Tag",
+  "type": "object",
+  "properties": {
+    "ID": {
+      "$ref": "tag#/definitions/id"
+    },
+    "WithUser": {
+      "type": "boolean",
+      "sanitize": "mongo"
+    },
+    "ProjectFields": {
+      "$ref": "common#/definitions/projectFields"
+    }
+  },
+  "required": [
+    "ID"
+  ]
+}

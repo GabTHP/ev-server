@@ -1,0 +1,70 @@
+{
+  "$id": "user-create",
+  "title": "Create one User",
+  "type": "object",
+  "properties": {
+    "name": {
+      "$ref": "user#/definitions/name"
+    },
+    "firstName": {
+      "$ref": "user#/definitions/firstName"
+    },
+    "email": {
+      "$ref": "user#/definitions/email"
+    },
+    "costCenter": {
+      "$ref": "user#/definitions/costCenter"
+    },
+    "iNumber": {
+      "$ref": "user#/definitions/iNumber"
+    },
+    "image": {
+      "$ref": "user#/definitions/image"
+    },
+    "mobile": {
+      "$ref": "user#/definitions/mobile"
+    },
+    "locale": {
+      "$ref": "user#/definitions/locale"
+    },
+    "address": {
+      "$ref": "user#/definitions/address"
+    },
+    "password": {
+      "$ref": "user#/definitions/password"
+    },
+    "phone": {
+      "$ref": "user#/definitions/phone"
+    },
+    "issuer": {
+      "$ref": "user#/definitions/issuer"
+    },
+    "notificationsActive": {
+      "$ref": "user#/definitions/notificationsActive"
+    },
+    "notifications": {
+      "$ref": "user#/definitions/notifications"
+    },
+    "status": {
+      "$ref": "user#/definitions/status"
+    },
+    "plateID": {
+      "$ref": "user#/definitions/plateID"
+    },
+    "role": {
+      "$ref": "user#/definitions/role"
+    },
+    "technical": {
+      "type": "boolean",
+      "sanitize": "mongo"
+    },
+    "freeAccess": {
+      "type": "boolean",
+      "sanitize": "mongo"
+    }
+  },
+  "required": [
+    "name",
+    "email"
+  ]
+}

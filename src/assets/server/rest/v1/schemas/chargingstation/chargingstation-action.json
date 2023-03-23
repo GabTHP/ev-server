@@ -1,0 +1,117 @@
+{
+  "$id": "chargingstation-action",
+  "title": "Charging Station Action Request",
+  "type": "object",
+  "properties": {
+    "chargingStationID": {
+      "$ref": "chargingstation#/definitions/id"
+    },
+    "carID": {
+      "$ref": "common#/definitions/id"
+    },
+    "userID": {
+      "$ref": "common#/definitions/id"
+    },
+    "args": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "sanitize": "mongo"
+        },
+        "key": {
+          "type": ["string", "array"],
+          "sanitize": "mongo"
+        },
+        "value": {
+          "type": "string",
+          "sanitize": "mongo"
+        },
+        "custom": {
+          "type": "boolean",
+          "sanitize": "mongo"
+        },
+        "connectorId": {
+          "$ref": "chargingstation#/definitions/connector/properties/connectorId"
+        },
+        "duration": {
+          "type": "number",
+          "sanitize": "mongo"
+        },
+        "chargingRateUnit": {
+          "type": "string",
+          "sanitize": "mongo",
+          "enum": ["A", "W"]
+        },
+        "chargingProfilePurpose": {
+          "$ref": "chargingstation-profile#/definitions/profile/properties/chargingProfilePurpose"
+        },
+        "stackLevel": {
+          "$ref": "chargingstation-profile#/definitions/profile/properties/stackLevel"
+        },
+        "tagID": {
+          "type": "string",
+          "sanitize": "mongo"
+        },
+        "visualTagID": {
+          "type": "string",
+          "sanitize": "mongo"
+        },
+        "location": {
+          "type": "string",
+          "sanitize": "mongo"
+        },
+        "retries": {
+          "type": "number",
+          "sanitize": "mongo"
+        },
+        "retryInterval": {
+          "type": "number",
+          "sanitize": "mongo"
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time",
+          "customType": "date",
+          "sanitize": "mongo"
+        },
+        "stopTime": {
+          "type": "string",
+          "format": "date-time",
+          "customType": "date",
+          "sanitize": "mongo"
+        },
+        "retrieveDate": {
+          "type": "string",
+          "format": "date-time",
+          "customType": "date",
+          "sanitize": "mongo"
+        },
+        "transactionId": {
+          "$ref": "transaction#/definitions/id"
+        },
+        "csChargingProfile": {
+          "$ref": "chargingstation-profile#"
+        },
+        "vendorId": {
+          "type": "string",
+          "sanitize": "mongo"
+        },
+        "messageId": {
+          "type": "string",
+          "sanitize": "mongo"
+        },
+        "data": {
+          "type": "string",
+          "sanitize": "mongo"
+        }
+      }
+    },
+    "chargePointID": {
+      "$ref": "common#/definitions/id"
+    }
+  },
+  "required": [
+    "chargingStationID"
+  ]
+}

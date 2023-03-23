@@ -1,0 +1,13 @@
+{
+  "$id": "auth-eula-check",
+  "title": "Check Eula",
+  "type": "object",
+  "properties": {
+    "Email": {
+      "$ref": "user#/definitions/email"
+    }
+  },
+  "required": [
+    "Email"
+  ]
+}

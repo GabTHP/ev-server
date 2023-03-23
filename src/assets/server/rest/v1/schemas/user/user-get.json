@@ -1,0 +1,16 @@
+{
+  "$id": "user-get",
+  "title": "Get a User by id",
+  "type": "object",
+  "properties": {
+    "ID": {
+      "$ref": "user#/definitions/id"
+    },
+    "ProjectFields": {
+      "$ref": "common#/definitions/projectFields"
+    }
+  },
+  "required": [
+    "ID"
+  ]
+}

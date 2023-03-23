@@ -1,0 +1,21 @@
+{
+  "$id": "authorize-request",
+  "description": "AuthorizeRequest",
+  "type": "object",
+  "properties": {
+    "idTag": {
+      "type": "string",
+      "description": "string defining identification token, e.g. RFID or credit card number. To be treated as case insensitive.",
+      "minLength": 1,
+      "maxLength": 20,
+      "transform": ["toUpperCase"]
+    },
+    "performanceID": {
+      "type": "string",
+      "description": "performance correlation ID"
+    }
+  },
+  "required": [
+    "idTag"
+  ]
+}

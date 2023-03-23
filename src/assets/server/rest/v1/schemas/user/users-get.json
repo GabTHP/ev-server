@@ -1,0 +1,67 @@
+{
+  "$id": "users-get",
+  "title": "Get Users",
+  "type": "object",
+  "properties": {
+    "Issuer": {
+      "type": "boolean",
+      "sanitize": "mongo"
+    },
+    "SiteID": {
+      "$ref": "common#/definitions/ids"
+    },
+    "UserID": {
+      "$ref": "common#/definitions/ids"
+    },
+    "Role": {
+      "type": "string",
+      "sanitize": "mongo",
+      "pattern": "^[SABD](\\|[SABD])*$"
+    },
+    "Technical": {
+      "type": "boolean",
+      "sanitize": "mongo"
+    },
+    "FreeAccess": {
+      "type": "boolean",
+      "sanitize": "mongo"
+    },
+    "Status": {
+      "type": "string",
+      "sanitize": "mongo",
+      "pattern": "^[PAIBL](\\|[PAIBL])*$"
+    },
+    "ExcludeSiteID": {
+      "$ref": "common#/definitions/ids"
+    },
+    "VisualTagID": {
+      "type": "string",
+      "sanitize": "mongo"
+    },
+    "Search": {
+      "$ref": "common#/definitions/search"
+    },
+    "SortFields": {
+      "$ref": "common#/definitions/sortFields"
+    },
+    "Limit": {
+      "$ref": "common#/definitions/limit"
+    },
+    "Skip": {
+      "$ref": "common#/definitions/skip"
+    },
+    "OnlyRecordCount": {
+      "$ref": "common#/definitions/onlyRecordCount"
+    },
+    "ProjectFields": {
+      "$ref": "common#/definitions/projectFields"
+    },
+    "WithAuth": {
+      "$ref": "common#/definitions/withAuth",
+      "default": true
+    }
+  },
+  "required": [
+    "Limit"
+  ]
+}

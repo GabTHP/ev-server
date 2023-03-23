@@ -1,0 +1,45 @@
+{
+  "$id": "tags-get",
+  "title": "Get Tags",
+  "type": "object",
+  "properties": {
+    "Active": {
+      "$ref": "tag#/definitions/active"
+    },
+    "Issuer": {
+      "$ref": "tag#/definitions/issuer"
+    },
+    "UserID": {
+      "$ref": "common#/definitions/ids"
+    },
+    "WithUser": {
+      "type": "boolean",
+      "sanitize": "mongo"
+    },
+    "Search": {
+      "$ref": "common#/definitions/search"
+    },
+    "SortFields": {
+      "$ref": "common#/definitions/sortFields"
+    },
+    "Limit": {
+      "$ref": "common#/definitions/limit"
+    },
+    "Skip": {
+      "$ref": "common#/definitions/skip"
+    },
+    "OnlyRecordCount": {
+      "$ref": "common#/definitions/onlyRecordCount"
+    },
+    "ProjectFields": {
+      "$ref": "common#/definitions/projectFields"
+    },
+    "WithAuth": {
+      "$ref": "common#/definitions/withAuth",
+      "default": true
+    }
+  },
+  "required": [
+    "Limit"
+  ]
+}

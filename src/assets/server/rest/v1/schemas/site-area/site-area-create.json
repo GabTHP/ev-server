@@ -1,0 +1,51 @@
+{
+  "$id": "site-area-create",
+  "title": "Create Site Area Request",
+  "type": "object",
+  "properties": {
+    "name": {
+      "$ref": "site-area#/definitions/name"
+    },
+    "address": {
+      "$ref": "site-area#/definitions/address"
+    },
+    "maximumPower": {
+      "$ref": "site-area#/definitions/maximumPower"
+    },
+    "numberOfPhases": {
+      "$ref": "site-area#/definitions/numberOfPhases"
+    },
+    "voltage": {
+      "$ref": "site-area#/definitions/voltage"
+    },
+    "smartCharging": {
+      "$ref": "site-area#/definitions/smartCharging",
+      "default": false
+    },
+    "smartChargingSessionParameters": {
+      "$ref": "common#/definitions/smartChargingSessionParameters"
+    },
+    "accessControl": {
+      "$ref": "site-area#/definitions/accessControl"
+    },
+    "siteID": {
+      "$ref": "site-area#/definitions/siteID"
+    },
+    "parentSiteAreaID": {
+      "$ref": "site-area#/definitions/parentSiteAreaID"
+    },
+    "image": {
+      "$ref": "site-area#/definitions/image"
+    },
+    "tariffID": {
+      "$ref": "common#/definitions/tariff-id"
+    },
+    "subSiteAreasAction": {
+      "$ref": "site-area#/definitions/subSiteAreasAction"
+    }
+  },
+  "required": [
+    "name",
+    "siteID"
+  ]
+}

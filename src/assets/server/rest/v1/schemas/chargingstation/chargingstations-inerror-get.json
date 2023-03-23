@@ -1,0 +1,42 @@
+{
+  "$id": "chargingstations-inerror-get",
+  "title": "Get Charging Stations in error Request",
+  "type": "object",
+  "properties": {
+    "Search": {
+      "$ref": "common#/definitions/search"
+    },
+    "SiteID": {
+      "$ref": "common#/definitions/ids"
+    },
+    "SiteAreaID": {
+      "$ref": "common#/definitions/ids"
+    },
+    "ErrorType": {
+      "type": "string",
+      "sanitize": "mongo"
+    },
+    "Limit": {
+      "$ref": "common#/definitions/limit"
+    },
+    "SortFields": {
+      "$ref": "common#/definitions/sortFields"
+    },
+    "Skip": {
+      "$ref": "common#/definitions/skip"
+    },
+    "OnlyRecordCount": {
+      "$ref": "common#/definitions/onlyRecordCount"
+    },
+    "ProjectFields": {
+      "$ref": "common#/definitions/projectFields"
+    },
+    "WithAuth": {
+      "$ref": "common#/definitions/withAuth",
+      "default": true
+    }
+  },
+  "required": [
+    "Limit"
+  ]
+}

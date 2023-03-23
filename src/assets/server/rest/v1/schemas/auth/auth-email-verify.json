@@ -1,0 +1,18 @@
+{
+  "$id": "auth-email-verify",
+  "title": "Verify email",
+  "type": "object",
+  "properties": {
+    "Email": {
+      "$ref": "user#/definitions/email"
+    },
+    "VerificationToken": {
+      "type": "string",
+      "sanitize": "mongo"
+    }
+  },
+  "required": [
+    "Email",
+    "VerificationToken"
+  ]
+}

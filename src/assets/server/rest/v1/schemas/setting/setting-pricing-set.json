@@ -1,0 +1,50 @@
+{
+  "$id": "setting-pricing-set",
+  "title": "Set Pricing Settings",
+  "type": "object",
+  "properties": {
+    "content": {
+      "type": "object",
+      "properties": {
+        "simple": {
+          "type": "object",
+          "properties": {
+            "price": {
+              "type": "number",
+              "sanitize": "mongo"
+            },
+            "currency": {
+              "type": "string",
+              "sanitize": "mongo"
+            }
+          }
+        },
+        "type": {
+          "type": "string",
+          "sanitize": "mongo",
+          "enum": ["simple"]
+        }
+      },
+      "links": {
+        "$ref": "setting#/definitions/links"
+      },
+      "required": [
+        "type"
+      ]
+    },
+    "id": {
+      "$ref": "common#/definitions/id"
+    },
+    "identifier": {
+      "type": "string",
+      "sanitize": "mongo",
+      "enum": ["pricing"]
+    },
+    "sensitiveData": {
+      "$ref": "setting#/definitions/sensitiveData"
+    }
+  },
+  "required": [
+    "identifier"
+  ]
+}

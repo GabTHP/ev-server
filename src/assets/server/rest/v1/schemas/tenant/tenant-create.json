@@ -1,0 +1,33 @@
+{
+  "$id": "tenant-create",
+  "title": "Create one Tenant",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "tenant#/definitions/id"
+    },
+    "name": {
+      "$ref": "tenant#/definitions/name"
+    },
+    "email": {
+      "$ref": "user#/definitions/email"
+    },
+    "subdomain": {
+      "$ref": "common#/definitions/subdomain"
+    },
+    "logo": {
+      "$ref": "common#/definitions/logo"
+    },
+    "address": {
+      "$ref": "common#/definitions/address"
+    },
+    "components": {
+      "$ref": "tenant-components#/definitions/components"
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "subdomain"
+  ]
+}

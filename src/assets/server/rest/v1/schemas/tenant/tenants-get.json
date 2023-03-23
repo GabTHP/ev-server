@@ -1,0 +1,33 @@
+{
+  "$id": "tenants-get",
+  "title": "Get all the Tenants",
+  "type": "object",
+  "properties": {
+    "Search": {
+      "$ref": "common#/definitions/search"
+    },
+    "WithLogo": {
+      "type": "boolean",
+      "sanitize": "mongo"
+    },
+    "WithComponents": {
+      "type": "boolean",
+      "sanitize": "mongo"
+    },
+    "Limit": {
+      "$ref": "common#/definitions/limit"
+    },
+    "Skip": {
+      "$ref": "common#/definitions/skip"
+    },
+    "SortFields": {
+      "$ref": "common#/definitions/sortFields"
+    },
+    "ProjectFields": {
+      "$ref": "common#/definitions/projectFields"
+    }
+  },
+  "required": [
+    "Limit"
+  ]
+}
