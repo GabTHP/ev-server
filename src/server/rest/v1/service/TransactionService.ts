@@ -543,12 +543,12 @@ export default class TransactionService {
     req.query.Limit = Constants.EXPORT_PAGE_SIZE.toString();
     req.query.Status = TransactionStatus.COMPLETED;
     req.query.WithTag = 'true';
-    // Filter
     const filteredRequest = TransactionValidatorRest.getInstance().validateTransactionsGetReq(req.query);
-    // Export
-    await UtilsService.exportToPDFTransaction(req, res, 'exported-sessions.pdf', filteredRequest,
-    TransactionService.getTransactions.bind(this, req, filteredRequest, Action.EXPORT_COMPLETED_TRANSACTION),
-    TransactionService.convertToPDFTransaction.bind(this));
+    // Delete
+     await UtilsService.exportToPDFTransaction(req, res, 'exported-sessions.pdf', filteredRequest,  
+     TransactionService.getTransactions.bind(this, req, filteredRequest, Action.EXPORT_COMPLETED_TRANSACTION),
+     TransactionService.convertToPDFTransaction.bind(this));
+
  
   }
 
@@ -685,23 +685,126 @@ export default class TransactionService {
     return Utils.isNullOrUndefined(headers) ? Constants.CR_LF + rows : [headers, rows].join(Constants.CR_LF);
   }
 
-  private static convertToPDFTransaction(eq: Request, pdfDocument: PDFKit.PDFDocument,  transactions: Transaction[]) {
-
-    const transactionsIDsToExport = [];
+  private static convertToPDFTransaction(req: Request, pdfDocument: PDFKit.PDFDocument, transactions: Transaction[]) {
   
 // Create a document
+    const fs = require('fs');
 
-    for (const transactionID of transactions) {
-      console.log("test1")
+    function generateHr(pdfDocument, y) {
+      pdfDocument.strokeColor("#aaaaaa")
+    .lineWidth(1)
+    .moveTo(50, y)
+    .lineTo(550, y)
+    .stroke();
     }
-    console.log(transactions)
-    pdfDocument.text("Sample text", 100, 100);
 
-
-
+    function generateTableRow(
+      pdfDocument,
+      y,
+      date,
+      borneId,
+      userId,
+      duration,
+      consumption,
+      cost
+    ) {
+      pdfDocument
+        .fontSize(10)
+        .text(date, 50, y)
+        .text(borneId, 120, y)
+        .text(userId, 220, y)
+        .text(duration, 300, y, {width:80, align: 'right' })
+        .text(consumption, 400, y, {width:80, align: 'right' })
+        .text(cost, 0, y, { align: 'right' })
+        .moveDown();
+    }
+    const imageB64 ="data:image/png;base64,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";    
     
-    
-  }
+
+
+    pdfDocument
+    .fillColor("#444444")
+    .fontSize(20)
+    .text("Note de frais", 50, 160, { align: 'center' }).moveDown();
+    pdfDocument
+    .fillColor("#444444")
+    .fontSize(15)
+    .text("Session de recharge", 50, 185, { align: 'center' });
+
+    const invoiceTableTop = 280;
+
+    pdfDocument.font("Helvetica-Bold");
+    generateTableRow(
+      pdfDocument,
+      invoiceTableTop,
+      "Date",
+      "ID borne",
+      "ID Utilisateur",
+      "Durée",
+      "Consommation ",
+      "Coût"
+    );
+    generateTableRow(
+      pdfDocument,
+      invoiceTableTop + 10,
+      "",
+      "",
+      "",
+      "(minutes)",
+      "(KwH)",
+      " "
+    );
+    generateHr(pdfDocument, invoiceTableTop + 23);
+    pdfDocument.font("Helvetica");
+
+    let i = 0;
+    let timeTotal = 0;
+    let consumptionTotal = 0;
+    let costTotal = 0;
+    let companyName
+    for (const transaction of transactions) {
+      transaction.company? companyName = transaction.company.name: " "
+      costTotal = costTotal + (transaction.stop.roundedPrice ? transaction.stop.roundedPrice : 0)
+      const position = invoiceTableTop + (i + 1) * 30;
+      generateTableRow(
+        pdfDocument,
+        position,
+        (transaction.timezone ? moment(transaction.timestamp).tz(transaction.timezone) : moment.utc(transaction.timestamp)).format('YYYY-MM-DD'),
+        transaction.chargeBoxID,
+        transaction.user ? transaction.user.id : '',
+        transaction.stop ? (transaction.stop.totalDurationSecs ? Utils.truncTo(Utils.createDecimal(transaction.stop.totalDurationSecs).div(60).toNumber(), 2) : 0) : '',
+        transaction.stop ?
+          (transaction.stop.totalConsumptionWh ? Utils.truncTo(Utils.createDecimal(transaction.stop.totalConsumptionWh).div(1000).toNumber(), 2) : 0) : '',
+        transaction.stop ? transaction.stop.roundedPrice : '',
+      );
+  
+      generateHr(pdfDocument, position + 20);
+      i++
+    }
+
+    const subtotalPosition = invoiceTableTop + (i + 1) * 30;
+    generateTableRow(
+      pdfDocument,
+      subtotalPosition ,
+      "",
+      "",
+      "",
+      "",
+      "Total :",
+      costTotal +" €"
+    );
+
+    pdfDocument.image(imageB64, 50, 45, { width: 125 })
+    .fillColor('#444444')
+		.fontSize(20)
+		.fontSize(10)
+		.text(companyName, 200, 65, { align: 'right' })
+		.text('New York, NY, 10025', 200, 80, { align: 'right' })
+		.moveDown();
+
+   
+
+}
 
   private static async deleteTransactions(action: ServerAction, tenant: Tenant, loggedUser: UserToken, transactionsIDs: number[]): Promise<ActionsResponse> {
     const transactionsIDsToDelete = [];

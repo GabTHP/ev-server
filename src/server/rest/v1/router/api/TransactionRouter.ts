@@ -135,7 +135,7 @@ export default class TransactionRouter {
   }
 
   private buildRouteTransactionsRefund(): void {
-    this.router.post(`/${RESTServerRoute.REST_TRANSACTIONS_REFUND_ACTION}`, (req: Request, res: Response, next: NextFunction) => {
+    this.router.get(`/${RESTServerRoute.REST_TRANSACTIONS_REFUND_ACTION}`, (req: Request, res: Response, next: NextFunction) => {
       req.body.transactionsIDs = req.body.transactionIds;
       void RouterUtils.handleRestServerAction(TransactionService.handleRefundTransactions.bind(this), ServerAction.TRANSACTIONS_REFUND, req, res, next);
     });
