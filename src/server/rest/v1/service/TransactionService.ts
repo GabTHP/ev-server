@@ -544,7 +544,6 @@ export default class TransactionService {
     req.query.Status = TransactionStatus.COMPLETED;
     req.query.WithTag = 'true';
     const filteredRequest = TransactionValidatorRest.getInstance().validateTransactionsGetReq(req.query);
-    // Delete
      await UtilsService.exportToPDFTransaction(req, res, 'exported-sessions.pdf', filteredRequest,  
      TransactionService.getTransactions.bind(this, req, filteredRequest, Action.EXPORT_COMPLETED_TRANSACTION),
      TransactionService.convertToPDFTransaction.bind(this));
@@ -711,9 +710,9 @@ export default class TransactionService {
       pdfDocument
         .fontSize(10)
         .text(date, 50, y)
-        .text(borneId, 120, y)
-        .text(userId, 220, y)
-        .text(duration, 300, y, {width:80, align: 'right' })
+        .text(borneId, 100, y)
+        .text(userId, 200, y)
+        .text(duration, 290, y, {width:80, align: 'right' })
         .text(consumption, 400, y, {width:80, align: 'right' })
         .text(cost, 0, y, { align: 'right' })
         .moveDown();
@@ -761,10 +760,15 @@ export default class TransactionService {
     let timeTotal = 0;
     let consumptionTotal = 0;
     let costTotal = 0;
-    let companyName
+    let companyName;
+    let companyAddress;
+    let priceUnit;
+
     for (const transaction of transactions) {
-      transaction.company? companyName = transaction.company.name: " "
-      costTotal = costTotal + (transaction.stop.roundedPrice ? transaction.stop.roundedPrice : 0)
+      console.log(transaction.company)
+      priceUnit  = transaction.stop.priceUnit;
+      transaction.company? companyName = transaction.company.name: " ";
+      costTotal = costTotal + (transaction.stop.roundedPrice ? transaction.stop.roundedPrice : 0);
       const position = invoiceTableTop + (i + 1) * 30;
       generateTableRow(
         pdfDocument,
@@ -783,6 +787,7 @@ export default class TransactionService {
     }
 
     const subtotalPosition = invoiceTableTop + (i + 1) * 30;
+    pdfDocument.font("Helvetica-Bold");
     generateTableRow(
       pdfDocument,
       subtotalPosition ,
@@ -791,7 +796,7 @@ export default class TransactionService {
       "",
       "",
       "Total :",
-      costTotal +" €"
+      costTotal + priceUnit
     );
 
     pdfDocument.image(imageB64, 50, 45, { width: 125 })
@@ -799,7 +804,6 @@ export default class TransactionService {
 		.fontSize(20)
 		.fontSize(10)
 		.text(companyName, 200, 65, { align: 'right' })
-		.text('New York, NY, 10025', 200, 80, { align: 'right' })
 		.moveDown();
 
    
@@ -909,7 +913,7 @@ export default class TransactionService {
         withChargingStation: filteredRequest.WithChargingStation,
         withCar: filteredRequest.WithCar,
         withSite: filteredRequest.WithSite,
-        withCompany: filteredRequest.WithCompany,
+        withCompany:filteredRequest.WithCompany,
         withSiteArea: filteredRequest.WithSiteArea,
         siteIDs: (filteredRequest.SiteID ? filteredRequest.SiteID.split('|') : null),
         siteAreaIDs: filteredRequest.SiteAreaID ? filteredRequest.SiteAreaID.split('|') : null,

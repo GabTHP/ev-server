@@ -691,7 +691,7 @@ export const AUTHORIZATION_DEFINITION: AuthorizationDefinition = {
           }
         },
         attributes: [
-          'billingData.stop.invoiceNumber', 'chargeBoxID', 'company.name', 'companyID', 'connectorId', 'id', 'issuer',
+          'billingData.stop.invoiceNumber', 'chargeBoxID', 'company.name','company.address.address1', 'companyID', 'connectorId', 'id', 'issuer',
           'meterStart', 'ocpi', 'ocpiWithCdr', 'site.name', 'siteArea.name', 'siteAreaID', 'siteID', 'stateOfCharge',
           'stop.extraInactivitySecs', 'stop.inactivityStatus', 'stop.price', 'stop.priceUnit', 'stop.reason', 'stop.roundedPrice',
           'stop.stateOfCharge', 'stop.tag.description', 'stop.tag.visualID', 'stop.tagID', 'stop.timestamp', 'stop.totalConsumptionWh',

@@ -4,6 +4,7 @@ import { OCPP15TransactionData, OCPPMeterValue } from './ocpp/OCPPServer';
 
 import ChargingStation from '../types/ChargingStation';
 import Company from './Company';
+import Address from './Address';
 import { DatabaseCount } from './GlobalType';
 import { OCPICdr } from './ocpi/OCPICdr';
 import { OCPISession } from './ocpi/OCPISession';
@@ -90,6 +91,7 @@ export default interface Transaction extends AbstractCurrentConsumption, Transac
   phasesUsed?: CSPhasesUsed;
   companyID?: string;
   company?: Company;
+  address?: Address ;
   siteID?: string;
   site?: Site;
   siteAreaID?: string;
